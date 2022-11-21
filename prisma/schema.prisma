@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Person {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  name           String
+  GiftExchange   GiftExchange? @relation(fields: [giftExchangeId], references: [id])
+  giftExchangeId String?       @db.ObjectId
+}
+
+model Gift {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  from           String?       @db.ObjectId
+  to             String?       @db.ObjectId
+  GiftExchange   GiftExchange? @relation(fields: [giftExchangeId], references: [id])
+  giftExchangeId String?       @db.ObjectId
+}
+
+model GiftExchange {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  groupId   String   @map("groupId") @db.ObjectId
+  people    Person[]
+  gifts     Gift[]
+}
