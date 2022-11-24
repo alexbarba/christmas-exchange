@@ -15,6 +15,7 @@ model Person {
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt
   name           String
+  raffled       Boolean       @default(false)
   GiftExchange   GiftExchange? @relation(fields: [giftExchangeId], references: [id])
   giftExchangeId String?       @db.ObjectId
 }
@@ -25,6 +26,7 @@ model Gift {
   updatedAt      DateTime      @updatedAt
   from           String?       @db.ObjectId
   to             String?       @db.ObjectId
+  opened         Boolean       @default(false)
   GiftExchange   GiftExchange? @relation(fields: [giftExchangeId], references: [id])
   giftExchangeId String?       @db.ObjectId
 }
