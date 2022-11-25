@@ -12,6 +12,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Sorteo de navidad" />
+        <title>Sorteo navideño</title>
+      </head>
       <body>
         <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
           <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">

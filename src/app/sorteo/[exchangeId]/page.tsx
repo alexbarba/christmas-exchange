@@ -19,6 +19,7 @@ const getPerson = (id: string) => {
     },
   });
 };
+
 const Exchange = async ({
   params,
   searchParams,
