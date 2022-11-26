@@ -33,7 +33,7 @@ const Exchange = async ({
 
   return (
     <section className="flex flex-col items-center justify-center text-center text-purple-100">
-      <h2 className=" text-3xl">Grupo: {exchange?.name}</h2>
+      <h2 className="my-4 text-3xl">Grupo: {exchange?.name}</h2>
       <section className="max-w-xs">
         <label className="mt-4 text-xl">
           Quien eres?

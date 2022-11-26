@@ -15,16 +15,19 @@ const TurnLuck: FC<Props> = ({ exchangeId, whoami }) => {
   const router = useRouter();
   const onClick = async () => {
     setError(null);
-    const res: { gift: Gift } | null = await fetch(`/api/turn-luck`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        giftExchangeId: exchangeId,
-        whoami,
-      }),
-    })
+    const res: { gift: Gift } | null = await fetch(
+      `https://christmas-exchange.vercel.app/api/turn-luck`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          giftExchangeId: exchangeId,
+          whoami,
+        }),
+      }
+    )
       .then(async (response) => {
         if (!response.ok) {
           const err = await response.json();
@@ -43,7 +46,7 @@ const TurnLuck: FC<Props> = ({ exchangeId, whoami }) => {
   };
   return (
     <>
-      <button className="btn my-2" onClick={onClick}>
+      <button className="btn my-2 text-xl" onClick={onClick}>
         Sacar papelito
       </button>
       {error && <p className="text-red-300">Oh oh, {error}</p>}
