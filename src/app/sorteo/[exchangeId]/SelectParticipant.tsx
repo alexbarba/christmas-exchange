@@ -16,7 +16,7 @@ const SelectParticipant: FC<Props> = ({ participants }) => {
       onChange={(e) => {
         router.push(`${pathname}?whoami=${e.target.value}`);
       }}
-      className="w-full max-w-xs rounded-lg bg-gray-700 px-4 py-2 text-center"
+      className="w-full rounded-lg bg-gray-700 px-4 py-2 text-center"
     >
       <option value="">Selecciona un participante</option>
       {participants.map((participant) => (

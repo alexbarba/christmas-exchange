@@ -15,7 +15,7 @@ const TurnLuck: FC<Props> = ({ exchangeId, whoami }) => {
   const router = useRouter();
   const onClick = async () => {
     setError(null);
-    const res: {gift: Gift} | null = await fetch(`/api/turn-luck`, {
+    const res: { gift: Gift } | null = await fetch(`/api/turn-luck`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,20 +25,21 @@ const TurnLuck: FC<Props> = ({ exchangeId, whoami }) => {
         whoami,
       }),
     })
-      .then((response) => {
-        if (!response.ok) throw new Error(response.statusText);
+      .then(async (response) => {
+        if (!response.ok) {
+          const err = await response.json();
+          throw new Error(err.message);
+        }
         return response;
       })
       .then((res) => res.json())
       .catch((error) => {
         setError(error.message);
       });
-      
-      if(res){
-        router.push(`${pathname}?whoami=${whoami}&to=${res?.gift.to}`)
-      }
 
-    
+    if (res) {
+      router.push(`${pathname}?whoami=${whoami}&to=${res?.gift.to}`);
+    }
   };
   return (
     <>
