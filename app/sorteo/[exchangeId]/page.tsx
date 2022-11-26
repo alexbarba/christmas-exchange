@@ -2,6 +2,13 @@ import { prisma } from "@/server/db/client";
 import SelectParticipant from "./SelectParticipant";
 import TurnLuck from "./TurnLuck";
 
+export const dynamic = "auto",
+  dynamicParams = true,
+  revalidate = 3600,
+  fetchCache = "auto",
+  runtime = "nodejs",
+  preferredRegion = "auto";
+
 const getExchange = (exchangeId: string) => {
   return prisma.giftExchange.findUnique({
     where: {
